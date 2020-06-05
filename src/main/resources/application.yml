@@ -1,0 +1,59 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    username: root
+    password: root
+    #使用 MySQL连接驱动是8.0以上，需要在Url后面加上时区, GMT%2B8代表中国时区，不然报时区错误
+    url: jdbc:mysql://localhost:3306/mydb?characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    # 注意： 新版本驱动包，要使用以下类作为驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 20000
+    pool:
+      maxActive: 8
+      minIdle: 0
+      maxIdle: 8
+      maxWait: -1
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:C:/service
+
+  jackson:
+    #参数意义：
+    #JsonInclude.Include.ALWAYS       默认
+    #JsonInclude.Include.NON_DEFAULT   属性为默认值不序列化
+    #JsonInclude.Include.NON_EMPTY     属性为 空（””） 或者为 NULL 都不序列化
+    #JsonInclude.Include.NON_NULL      属性为NULL  不序列化
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+# Mybatis相关配置
+mybatis:
+  #核心配置文件路径
+  #    config-location: classpath:/mybatis-config #映射配置文件路径
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.demo.springbootproject.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+#日志
+logging:
+  config: classpath:logback.xml
