@@ -21,18 +21,18 @@ public class GlobalExceptionHandler {
 	/**
 	 * 自定义异常
 	 */
-	@ExceptionHandler(RRException.class)
-	public ApiResult handleRRException(RRException e){
-		return ApiResult.failed(e.getCode(),e.getMessage());
+	@ExceptionHandler(BusinessException.class)
+	public ApiResult handleRRException(BusinessException e) {
+		return ApiResult.failed(e.getCode(), e.getMessage());
 	}
 
-	@ExceptionHandler(DuplicateKeyException.class)
-	public ApiResult handleDuplicateKeyException(DuplicateKeyException e){
-		return ApiResult.failed("数据库中已存在该记录");
-	}
-
-	@ExceptionHandler(AccessDeniedException.class)
-	public ApiResult handleAccessDeniedException(AccessDeniedException e) {
-		return ApiResult.failed(HttpStatus.FORBIDDEN.value(), "没有权限，请联系管理员授权");
-	}
+	//@ExceptionHandler(DuplicateKeyException.class)
+	//public ApiResult handleDuplicateKeyException(DuplicateKeyException e){
+	//	return ApiResult.failed("数据库中已存在该记录");
+	//}
+	//
+	//@ExceptionHandler(AccessDeniedException.class)
+	//public ApiResult handleAccessDeniedException(AccessDeniedException e) {
+	//	return ApiResult.failed(HttpStatus.FORBIDDEN.value(), "没有权限，请联系管理员授权");
+	//}
 }
