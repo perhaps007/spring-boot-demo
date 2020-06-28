@@ -23,7 +23,7 @@
 
 ## 进度
 - [x] mybatis-generator-plugin
-- [x] reids
+- [x] redis
 - [x] tk.mybatis
 
 
